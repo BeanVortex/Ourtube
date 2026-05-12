@@ -600,6 +600,10 @@ jobs:
               echo "Sanitized name: $FILENAME_NO_EXT"
 
               FINAL_FOLDER_NAME=$(get_unique_folder "videos" "$FILENAME_NO_EXT")
+              if [ -d "$BACKUP_DIR/${FINAL_FOLDER_NAME}" ]; then
+                echo "⚠️ Backup folder already exists, removing all contents..."
+                rm -rf "$BACKUP_DIR/${FINAL_FOLDER_NAME}"
+              fi
 
               mkdir -p "$BACKUP_DIR/${FINAL_FOLDER_NAME}"
               echo "Created backup folder: $BACKUP_DIR/${FINAL_FOLDER_NAME}"
